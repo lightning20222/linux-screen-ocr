@@ -22,7 +22,7 @@ This application provides an automated installation script that safely handles s
 Run the following command in your terminal to install the application:
 
 ```bash
-bash <(curl -sL [https://raw.githubusercontent.com/lightning20222/linux-screen-ocr/refs/heads/main/install.sh)
+bash <(curl -sL https://raw.githubusercontent.com/lightning20222/linux-screen-ocr/refs/heads/main/install.sh)
 ```
 
 **What this script does:**
@@ -60,6 +60,6 @@ Now, simply press your assigned shortcut, click and drag to highlight the target
 To completely remove the application and its isolated virtual environment from your system, you can run the provided uninstall script:
 
 ```bash
-bash <(curl -sL [https://raw.githubusercontent.com/lightning20222/linux-screen-ocr/refs/heads/main/uninstall.sh)
+bash <(curl -sL https://raw.githubusercontent.com/lightning20222/linux-screen-ocr/refs/heads/main/uninstall.sh)
 ```
 *(Note: This safely removes the application files but leaves system-level packages like Tesseract installed, as other programs may depend on them).*
