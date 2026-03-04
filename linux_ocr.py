@@ -16,8 +16,10 @@ class Snipper(QtWidgets.QWidget):
         self.setCursor(QtGui.QCursor(QtCore.Qt.CrossCursor))
         
         # Get screen geometry to cover the whole screen
-        screen = QtWidgets.QApplication.primaryScreen().geometry()
-        self.setGeometry(screen)
+        # screen = QtWidgets.QApplication.primaryScreen().geometry()
+        # self.setGeometry(screen)
+        screen = QtWidgets.QApplication.primaryScreen()
+        self.setGeometry(screen.virtualGeometry())
         
         self.begin = QtCore.QPoint()
         self.end = QtCore.QPoint()
