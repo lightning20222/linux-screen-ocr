@@ -53,7 +53,12 @@ class Snipper(QtWidgets.QWidget):
         x2 = max(self.begin.x(), self.end.x())
         y2 = max(self.begin.y(), self.end.y())
         
+        # rect = QtCore.QRect(x1, y1, x2 - x1, y2 - y1)
         rect = QtCore.QRect(x1, y1, x2 - x1, y2 - y1)
+
+        if rect.width() < 5 or rect.height() < 5:
+            self.close()
+            return
         
         # Hide the overlay so it isn't in the screenshot
         self.hide()
@@ -80,7 +85,11 @@ class Snipper(QtWidgets.QWidget):
         
         # Run OCR
         try:
-            extracted_text = pytesseract.image_to_string(image).strip()
+            extracted_text = pytesseract.image_to_string(
+                image,
+                lang="eng",
+                config="--psm 6"
+            ).strip()
         except Exception as e:
             extracted_text = f"OCR Error: {str(e)}\n\nIs tesseract-ocr installed?"
 
@@ -88,7 +97,12 @@ class Snipper(QtWidgets.QWidget):
 
     def keyPressEvent(self, event):
         if event.key() == QtCore.Qt.Key_Escape:
+            self.close()
             QtWidgets.QApplication.quit()
+
+    # def keyPressEvent(self, event):
+    #     if event.key() == QtCore.Qt.Key_Escape:
+    #         QtWidgets.QApplication.quit()
 
     def show_result_dialog(self, text):
         dialog = QtWidgets.QDialog()
