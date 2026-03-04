@@ -28,7 +28,8 @@ class Snipper(QtWidgets.QWidget):
             qp = QtGui.QPainter(self)
             qp.setPen(QtGui.QPen(QtGui.QColor('red'), 2))
             qp.setBrush(QtGui.QColor(128, 128, 255, 128)) # Semi-transparent blue fill
-            qp.drawRect(QtCore.QRect(self.begin, self.end))
+            # qp.drawRect(QtCore.QRect(self.begin, self.end))
+            qp.drawRect(QtCore.QRect(self.begin, self.end).normalized())
 
     def mousePressEvent(self, event):
         self.begin = event.pos()
@@ -71,6 +72,7 @@ class Snipper(QtWidgets.QWidget):
         buffer = QtCore.QBuffer(byte_array)
         buffer.open(QtCore.QIODevice.WriteOnly)
         pixmap.save(buffer, "PNG")
+        buffer.close()
         
         image = Image.open(io.BytesIO(byte_array.data()))
         
