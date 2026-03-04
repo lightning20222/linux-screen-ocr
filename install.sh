@@ -25,6 +25,9 @@ if [ ! -f "$INSTALL_DIR/linux_ocr.py" ]; then
     exit 1
 fi
 
+# Make python script executable
+chmod +x "$INSTALL_DIR/linux_ocr.py"
+
 echo "Setting up Python virtual environment..."
 python3 -m venv "$INSTALL_DIR/venv"
 
@@ -58,4 +61,9 @@ echo ""
 echo "If command not found, restart terminal or run:"
 echo "source ~/.bashrc"
 echo ""
-echo "or by mapping 'linux-ocr' to a custom keyboard shortcut."
+echo "You can also map the command below to a custom keyboard shortcut:"
+echo "$HOME/.local/bin/linux-ocr"
+echo ""
+echo "Example:"
+echo "Settings → Keyboard → Shortcuts → Custom Shortcut"
+echo "Command: linux-ocr"
